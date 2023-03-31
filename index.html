@@ -13,7 +13,9 @@
 </head>
 <body>
 
-<section class="contour">
+    <span id="span">Veuillez entrer une limite d'articles</span>
+    <input type="number" id="limit" class="limite" maxlength="3">
+<section class="contour" id="contour">
     <header class="head">
         <h1>BLOG</h1>
     </header>
@@ -23,30 +25,12 @@
 
         <section class="articles none" id="articles">
 
-            <div class="cont">
-                <div class="article" id="art">
-                    <h2 id="titre"></h2>
-                    
-                    <p id="texte"></p>
-                    <p id = "date"></p>
-                </div>
-                <div class="article" id="art">
-                    <h2 id="titre"></h2>
-                    <p id="texte"></p>
-                    <p id = "date"></p>
-                </div>
+            <div class="cont" id="cont">
+               
             </div>
 
-            <div class="cont">
-                <div class="article" id="art">
-                    <h2 id="titre"></h2>
-                    <p id="texte"></p>
-                    <p id = "date"></p>
-                </div>
-                <div class="article" id="art">
-                    <h2 id="titre"></h2>
-                    <p id="texte"></p>
-                    <p id = "date"></p>
+            <div class="cont" id="cont2">
+                
                 </div>
         
             </div>
@@ -75,10 +59,8 @@
 
     <div class="erreur" id="erreurr">Erreur, Impossible de charger le blog</div>
 
-    <button class="active" id="reload">Recharge le blog</button>
-
 </section>
-
+<button class="active" id="reload" >Recharge le blog</button>
 
     
 
