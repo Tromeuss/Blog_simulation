@@ -1,6 +1,4 @@
 
-
-
 body
 {
     
@@ -26,7 +24,6 @@ body
     margin-bottom: 30px;
     width: 70%;
     padding: 20px;
-    transition: 3ms ease-in-out;
 }
 
 
@@ -110,7 +107,6 @@ h1 {
 
 .none {
     display: none;
-    transition: 3ms ease-in-out;
 }
 
 

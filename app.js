@@ -1,6 +1,3 @@
-
-
-
 let loader = document.getElementById("loader-4");
 let blog = document.getElementById("articles")
 let erreur = document.getElementById("erreurr")
@@ -18,40 +15,52 @@ function reset () {
 
 
 
-function main (latence){ 
-    reset()
-    const r = setTimeout(() => {
+function main(latence) {
+    reset();
+  
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
         fetch('https://jsonplaceholder.typicode.com/posts?_limit=4')
-        .then(res => {
-            if (res.ok){
-                res.json()
-                .then(res => {
-                const articles = document.querySelectorAll('.article')
-                articles.forEach((article, index)=> {
-                    article.querySelector('#titre').textContent = res[index].title;
-                    article.querySelector('#texte').textContent = res[index].body;
-                    
+          .then(res => {
+            if (!res.ok) {
+              reject(new Error('Erreur de requête'));
+            } else {
+              res.json()
+                .then(data => {
+                  resolve(data);
                 })
-                    loader.classList.add("none")
-                    blog.classList.remove("none")
-                })
+                .catch(error => {
+                  reject(error);
+                });
+                loader.classList.add("none")
+                blog.classList.remove("none")
+            }
+          })
+          .catch(error => {
+            reject(error);
+          });
+      }, latence);
+    });
+  }
 
-            }else{
-                throw new Error('Erreur de requête')
-            }}) 
-
-            
-
-    }, latence);
-    
-}
 
 
 reset()
 loader.classList.add("none")
 bouton.classList.remove("none")
-
 bouton.addEventListener("click", function() {
-    main(2000)
 
+    main(2000)
+    .then(data => {
+        const articles = document.querySelectorAll('.article')
+        articles.forEach((article, index)=> {
+        article.querySelector('#titre').textContent = data[index].title;
+        article.querySelector('#texte').textContent = data[index].body;
+    })
+
+    })
+
+    .catch(error => {erreur.classList.remove("none"), loader.classList.add("none"), console.log(error)})
+    
 })
+
